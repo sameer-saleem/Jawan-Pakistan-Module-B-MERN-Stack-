@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+}
+
+.inputs-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: end;
+    width: 60%;
+    margin-inline: auto;
+}
+h2 {
+    text-align: center;
+}
