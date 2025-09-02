@@ -104,7 +104,7 @@ if(state1 == 2) {
 // Write code where you log a var variable before it is declared.
 
 // console.log(city);
-// var city = 'Karachi';
+var city = 'Karachi';
 
 // What value do you get?
 // undefined 
@@ -113,14 +113,14 @@ if(state1 == 2) {
 // Hoisting with let and const:
 
 // console.log(country);
-// let country = 'Pakistan';
+let country = 'Pakistan';
 
 // Write code where you log a let variable before it is declared.
 // Cannot access 'country' before initialization
 
 
 // console.log(bike);
-// const bike = '125';
+const bike = '125';
 
 // Cannot access 'bike' before initialization
 
@@ -131,8 +131,8 @@ if(state1 == 2) {
 
 // What happens in each case?
 
-// var abc = 'abc';
-// var abc = 'xyx';
+var abc = 'abc';
+var abc = 'xyx';
 // console.log(abc);
 
 // got the last value xyx
@@ -162,8 +162,8 @@ if(state1 == 2) {
 // Declare a variable using var and assign it a value. Then reassign it a new value.
 // What happens in each case?
 
-// var value = 'empty string';
-// value = 'value';
+var value = 'empty string';
+value = 'value';
 
 // console.log(value);
 
@@ -171,13 +171,12 @@ if(state1 == 2) {
 
 // Declare a variable using let and assign it a value. Then reassign it a new value.
 
-// let newValue = 123;
-// newValue = 789;
+let newValue = 123;
+newValue = 789;
 
 // console.log(newValue);
 
 // value has been updated
-
 
 // Declare a variable using const and assign it a value. Then reassign it a new value.
 
@@ -187,3 +186,107 @@ if(state1 == 2) {
 
 // cannot assign a value to constant variable
 
+
+// Temporal Dead Zone (TDZ):
+
+// Declare a let variable inside a block but try to log it before the declaration.
+
+// if(game){
+//     console.log(game);
+//     let game = 'csgo';
+// }
+
+// got error game is not defined 
+
+
+// Declare a const variable inside a block but try to log it before the declaration.
+
+// if(game){
+//     console.log(game);
+//     const game = 'csgo';
+// }
+
+// got error game is not defined 
+
+// What error do you get? Why?
+
+// get variable is not defined error because varibale log first but declared later 
+
+
+// When to use var, let, and const:
+
+
+// Write a piece of code to demonstrate a good use case for var.
+
+function varGoodUseCase(){
+    var fruit = 'mango';
+    // console.log(fruit);
+}
+
+// varGoodUseCase();
+
+
+// Write a piece of code to demonstrate a good use case for let.
+
+let fruit;
+function letGoodUseCase(){
+    // console.log(fruit);
+}
+
+// letGoodUseCase();
+
+// Write a piece of code to demonstrate a good use case for const.
+
+const program = 'web and mobile';
+function constGoodUseCase(){
+    // console.log(program);
+}
+
+// constGoodUseCase();
+
+
+// String Interpolation:
+
+// Create variables for a person's first name and last name.
+
+let firstname = 'Sameer';
+let lastname = 'Saleem';
+
+// Use a template literal to create a full name string and log it to the console.
+const fullname = `${firstname} ${lastname}`;
+// console.log(fullname);
+
+
+// Multi-line Strings:
+
+// Use a template literal to create a multi-line string (e.g., an address) and log it to the console.
+
+let address = `Liaquatabad,
+Karachi Pakistan`;
+
+// console.log(address);
+
+
+// Simple Expressions:
+
+// Create variables for two numbers.
+let num1 = 10;
+let num2 = 20;
+
+// Use a template literal to create a string that includes the sum of the numbers.
+// Log the string to the console.
+
+let sum = `Sum: ${num1 + num2}`;
+// console.log(sum);
+
+// Function Calls:
+// Create a function that takes two numbers and returns their product.
+// Use a template literal to call this function inside a string and log the result to the console.
+
+function numbers(first, second){
+    return first + second;
+}
+
+let result = `Result ${numbers(100,200)}`;
+
+// console.log(result);
