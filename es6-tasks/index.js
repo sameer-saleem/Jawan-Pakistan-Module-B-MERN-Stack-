@@ -12,7 +12,7 @@ function myfunc(){
 var myname1 = 'Sameer Saleem 1';
 
 function myfunc1(){
-    
+
 }
 
 
@@ -21,7 +21,7 @@ function myfunc1(){
 let myname2 = 'Sameer Saleem 2';
 
 function myfunc2(){
-    
+
 }
 
 // Log all three variables to the console?  yes
@@ -276,7 +276,7 @@ let num2 = 20;
 // Use a template literal to create a string that includes the sum of the numbers.
 // Log the string to the console.
 
-let sum = `Sum: ${num1 + num2}`;
+// let sum = `Sum: ${num1 + num2}`;
 // console.log(sum);
 
 // Function Calls:
@@ -334,8 +334,8 @@ let backticks = `Eascape \``;
 // Create nested template literals to build a more complex string, such as a nested HTML structure (e.g., a table with rows and cells).
 // Log the result to the console.
 
-const table = 
-`<table>
+const table =
+    `<table>
     <tr>
         <td>One</td>
         <td>Two</td>
@@ -448,3 +448,164 @@ const newArray = numbersArr.map(item => item % 2 ==0 ? item * 2: item % 2 != 0 ?
 // Filtering Values:
 // Create an array of strings.
 // Use the filter method with a ternary operator to create a new array that only includes strings with a length greater than 3.
+// Log the new array to the console.
+
+const strArr = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+let newStrAray = strArr.filter(item => item.length > 3 ? item : '');
+// console.log(newStrAray);
+
+
+// Copying an Array:
+// Create an array originalArray with some elements.
+// Use the spread operator to create a copy of originalArray called copiedArray.
+// ● Log both arrays to the console to verify they are the same but not the same reference.
+
+const originalArray = ['Value 1', 'Value 2', 'Value 3', 'Value 4'];
+const copiedArray = [...originalArray];
+
+// console.log(originalArray);
+// console.log(copiedArray);
+// console.log(originalArray === copiedArray); // not the same  reference because copiedArray is the new array.
+
+
+// Merging Arrays:
+// Create two arrays array1 and array2.
+// ● Use the spread operator to create a new array mergedArray that combines the elements of array1 and array2.
+// ● Log mergedArray to the console.
+
+const array1 = ['One', 'Two', 'Three', 'Four'];
+const array2 = ['Five', 'Six', 'Seven', 'Eight'];
+let mergedArray = [...array1, ...array2];
+// console.log(mergedArray);
+
+
+// Adding Elements to an Array:
+// ● Create an array numbers with some elements.
+// ● Use the spread operator to add a new element at the beginning and at the end of the numbers array.
+// ● Log the updated array to the console.
+
+const arrayNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const updatedArray = [89, ...arrayNumbers, 56];
+// console.log(updatedArray);
+
+
+// Copying an Object:
+// ● Create an object originalObject with some key-value pairs.
+// ● Use the spread operator to create a copy of originalObject called copiedObject.
+// ● Log both objects to the console to verify they are the same but not the same reference.
+
+const originalObject = {
+    vehicle: 'Bike',
+    model: 2025,
+    color: 'Black'
+};
+
+const copiedObject = { ...originalObject };
+
+// console.log(originalObject);
+// console.log(copiedObject);
+// console.log(originalObject === copiedObject);
+
+
+// Merging Objects:
+// ● Create two objects object1 and object2 with some overlapping keys.
+// ● Use the spread operator to create a new object mergedObject that combines the properties of object1 and object2.
+// ● Log mergedObject to the console and note which values are retained for the overlapping keys.
+
+const object1 = {
+    fruit: 'Mango',
+    weight: '100gm'
+};
+
+const object2 = {
+    fruit: 'Apple',
+    weight: '100gm'
+};
+
+const mergedObject = { ...object1, ...object2 };
+// console.log(mergedObject);
+
+
+// Updating Object Properties:
+// ● Create an object user with properties name, age, and email.
+// ● Use the spread operator to create a new object updatedUser that updates the email property and adds a new address property.
+// ● Log the updatedUser object to the console.
+
+const user = {
+    name: 'Sameer',
+    age: 24,
+    email: 'saleemsameer736@gmail.com'
+};
+
+const updatedUser = { ...user, email: 'saleemsameer990@gmail.com' };
+// console.log(updatedUser);
+
+
+// Passing Array Elements as Arguments:
+// ● Create a function sum(a, b, c) that returns the sum of three numbers.
+// ● Create an array numbers with three elements.
+// ● Use the spread operator to pass the elements of numbers as arguments to the sum function.
+// ● Log the result to the console.
+
+function sum(a, b, c) {
+    return a + b + c;
+}
+
+const arrayNumElements = [2, 4, 6];
+let numbResult = sum(...arrayNumElements);
+// console.log(numbResult);
+
+
+// Combining Multiple Arrays:
+// ● Create a function combineArrays that takes any number of arrays as arguments and returns a single array containing all elements.
+// ● Use the spread operator inside the function to combine the arrays.
+// ● Call the function with multiple arrays and log the result.
+
+const anyNumbersOfArr1 = [12, 14, 16, 18];
+const anyNumbersOfArr2 = [18, 19, 21, 85];
+
+function combineArrays(numbArr1, numbArr2) {
+
+    let combineBothArray = [...numbArr1, ...numbArr2];
+    console.log(numbArr1, 'numbArr1');
+    console.log(numbArr2, 'numbArr2');
+    console.log(combineBothArray, 'combineBothArray');
+    return combineBothArray;
+}
+
+// combineArrays(anyNumbersOfArr1, anyNumbersOfArr2);
+
+
+// Rest Parameter with Spread Operator:
+// ● Create a function multiply that takes a number and any number of additional arguments.
+// ● Use the rest parameter to gather the additional arguments into an array and multiply each by the first argument.
+// ● Return an array of the results.
+// ● Call the function with appropriate arguments and log the result.
+
+
+function multiply(...number) {
+    // console.log(number);
+    let result = number.map(item => item * number[0]);
+    // console.log(result, 'result');
+    return result;
+}
+
+multiply(2, 4, 8, 9);
+multiply(3, 8, 9, 2);
+
+
+
+// Spread Operator with Nested Structures:
+// ● Create a nested array nestedArray and use the spread operator to create a shallow copy.
+// ● Modify the inner arrays in the copied array.
+// ● Log both the original and copied arrays to observe the effect of shallow copying.
+
+const nestedArray = ['val-1', 'val-2', 'val-3', 'val-4', ['val-5', 'val-6', 'val-7'], ['val-9', 'val-10']];
+const shallowCopy = [...nestedArray];
+
+shallowCopy[4].push('val-8');
+
+
+// console.log(nestedArray, 'nestedArray');
+// console.log(shallowCopy, 'shallowCopy');
+// console.log(nestedArray[4] === shallowCopy[4]);
