@@ -290,3 +290,161 @@ function numbers(first, second){
 let result = `Result ${numbers(100,200)}`;
 
 // console.log(result);
+
+
+// Creating a Tagged Template:
+// Write a simple tag function that takes a template string and logs it.
+// Use this tag function with a template literal.
+
+// I don't the tagged template underntand
+
+// Formatting:
+
+// Write a tag function that formats a string by making it uppercase.
+// Use this tag function with a template literal and log the result.
+
+
+
+// Conditional Logic:
+
+// Create a variable for the current hour.
+let currentHour = new Date().getHours();
+const message = `Hello, Good ${currentHour < 12 ? 'Morning': 'Afternoon'}`;
+// console.log(message);
+
+// Loops within Template Literals:
+// Create an array of items (e.g., a shopping list).
+
+const shoppingList = ['Shirt', 'Pent', 'Coat', 'Cap', 'Shoes'];
+
+// Use a template literal to generate an HTML list (<ul> and <li> elements) from the array and log it to the console.
+
+const shoppingItems = `<ul>${shoppingList.map(item => `<li>${item}</li>`).join('\n')} </ul>`;
+// console.log(shoppingItems);
+
+
+// Escaping Backticks:
+// Create a string that includes a backtick character using a template literal.
+
+let backticks = `Eascape \``;
+// console.log(backticks);
+
+
+// Nested Template Literals:
+// Create nested template literals to build a more complex string, such as a nested HTML structure (e.g., a table with rows and cells).
+// Log the result to the console.
+
+const table = 
+`<table>
+    <tr>
+        <td>One</td>
+        <td>Two</td>
+        <td>Three</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+</table>`;
+
+// console.log(table);
+
+
+// Simple Condition:
+// Create a variable age.
+// Use the ternary operator to assign a variable canVote the value "Yes" if age is 18 or older, and "No" otherwise.
+// Log canVote to the console.
+
+let age = 17;
+let canVote = age >= 18 ? 'Yes': 'No';
+// console.log(canVote)
+
+
+// Even or Odd:
+// Create a variable number.
+// Use the ternary operator to assign a variable evenOrOdd the value "Even" if number is even, and "Odd" if it's odd.
+// Log evenOrOdd to the console.
+
+let number = 12;
+let evenOrOdd = number % 2 == 0 ? 'Even': 'Odd';
+// console.log(evenOrOdd);
+
+
+// Grade Evaluation:
+// Create a variable score.
+// Use the ternary operator to assign a variable grade based on the following conditions:
+// "A" if score is 90 or above.
+// "B" if score is 80 or above.
+// "C" if score is 70 or above.
+// "D" if score is 60 or above.
+// "F" otherwise.
+// Log grade to the console.
+
+let score = 50;
+let grade = score >= 90 ? 'A': score >= 80 ? 'B' : score >= 70 ? 'C' : score >= 60 ? 'D' : 'F';
+// console.log(grade);
+
+
+// Login Status:
+// Create a variable isLoggedIn.
+// Use the ternary operator and logical operators to assign a variable statusMessage the value "Welcome back!" if isLoggedIn is true, and "Please log in" if isLoggedIn is false.
+// Log statusMessage to the console.
+
+let isLoggedIn = false;
+let statusMessage = isLoggedIn ? 'Welcome back!' : 'Please log in';
+// console.log(statusMessage);
+
+
+// Discount Eligibility:
+// Create variables isMember and purchaseAmount.
+// Use the ternary operator and logical operators to assign a variable discount the value 10% of purchaseAmount if isMember is true and purchaseAmount is greater than 100, and 0 otherwise.
+// Log discount to the console.
+
+
+let isMember = true;
+let purchaseAmount = 5000;
+let discount = isMember && purchaseAmount > 100 ? purchaseAmount * 10 / 100 : 0;
+
+// console.log(discount);
+
+// Determine Max Value:
+// Create a function maxValue(a, b) that returns the larger of the two numbers using the ternary operator.
+// ● Call the function with two numbers and log the result.
+
+function maxValue(a, b) {
+    return a > b ? `${a} is greater than b value`: b > a ? `${b} is greater than a value` : '';
+}
+
+const maxValueResult = maxValue(8,6);
+// console.log(maxValueResult);
+
+
+// Greeting Message:
+// Create a function greet(name) that returns a greeting message. If name is not provided (or is an empty string), it should return "Hello, guest!", otherwise, it should return "Hello, [name]!".
+// Call the function with and without a name and log the result.
+
+
+function greet(name) {
+    let message = name == '' || name == null ? 'Hello, guest!':  `Hello, ${name}`;
+    // console.log(message);
+}
+
+greet('Sameer');
+greet();
+
+
+// Mapping Values:
+// Create an array of numbers.
+// ● Use the map method with a ternary operator to create a new array where each number is doubled if it is even and tripled if it is odd.
+// ● Log the new array to the console.
+
+const numbersArr = [1,2,3,4,5,6,7,8,9];
+
+
+const newArray = numbersArr.map(item => item % 2 ==0 ? item * 2: item % 2 != 0 ? item * 3: '');
+// console.log(newArray);
+
+// Filtering Values:
+// Create an array of strings.
+// Use the filter method with a ternary operator to create a new array that only includes strings with a length greater than 3.
