@@ -609,3 +609,134 @@ shallowCopy[4].push('val-8');
 // console.log(nestedArray, 'nestedArray');
 // console.log(shallowCopy, 'shallowCopy');
 // console.log(nestedArray[4] === shallowCopy[4]);
+
+
+// Sum Function:
+// ● Create a function sum that uses the rest operator to take any number of arguments.
+// ● The function should return the sum of all its arguments.
+// ● Call the function with different numbers of arguments and log the results.
+
+function sumFunc(...anyNumber) {
+    let total = 0;
+    anyNumber.map(item => {
+        total += item; 
+    });
+    // console.log(total);
+}
+
+sumFunc(2,3,4,5,6,7,8,9,10);
+
+
+// Average Function:
+// ● Create a function average that uses the rest operator to take any number of arguments.
+// ● The function should return the average of all its arguments.
+// ● Call the function with different numbers of arguments and log the results.
+
+average = (...anyAvgNumb) => {
+    let total = 0;
+    anyAvgNumb.map(item => {
+        total += item; 
+    });
+    // console.log(total);
+    let averageVal = total / anyAvgNumb.length
+    // console.log(averageVal, 'Average');
+}
+
+average(2, 3, 4, 5, 6, 7, 8, 10);
+
+
+// First and Rest:
+// ● Create an array numbers with at least 5 elements.
+// ● Use array destructuring with the rest operator to assign the first element to a variable first and the remaining elements to a variable rest.
+// ● Log first and rest to the console.
+
+const numbersArrFR = [1,2,3,4,5];
+// let [first, ...rest] = numbersArrFR;
+// console.log(first);
+// console.log(rest);
+
+
+// Skip and Rest:
+// ● Create an array colors with at least 5 elements.
+// ● Use array destructuring with the rest operator to skip the first two elements and assign the remaining elements to a variable remainingColors.
+// ● Log remainingColors to the console.
+
+const colorsArr = ['Green', 'Red', 'Blue', 'Yellow', 'Purple'];
+let [, , ...remainingColors] = colorsArr;
+// console.log(remainingColors);
+
+
+// Basic Destructuring:
+// ● Create an object person with properties name, age, email, and address.
+// ● Use object destructuring with the rest operator to assign name and email to individual variables, and the remaining properties to a variable rest.
+// ● Log the variables to the console.
+
+const personObj = {
+    name: 'Sameer Saleem',
+    age: 24,
+    email: 'saleemsameer736@gmail.com',
+    address: 'Karachi, Pakistan'
+}
+
+// let {name: myfullName, email: myEmail, ...rest} = personObj;
+
+// console.log('My Name:' , myfullName);
+// console.log('My Email:' , myEmail);
+// console.log('Remaining Items: ', rest);
+
+
+// Nested Destructuring:
+// ● Create an object student with properties id, name, grades, and info (where info is another object with properties age and major).
+// ● Use nested destructuring with the rest operator to extract id, name, and major to individual variables, and the remaining properties to a variable rest.
+// ● Log the variables to the console.
+
+const student = {
+    id: 119,
+    name: 'Mudassir',
+    grades: 'A',
+    info: {
+        age: 27,
+        major: 'ABC'
+    }
+};
+
+// let {id: stdId, name: stdName, info: {major: stdMajor}, ...rest} = student;
+
+// console.log(stdId);
+// console.log(stdName);
+// console.log(stdMajor);
+// console.log(rest);
+
+
+// Filter Even Numbers:
+// ● Create a function filterEven that uses the rest operator to take any number of arguments.
+// ● The function should return a new array containing only the even numbers.
+// ● Call the function with different numbers of arguments and log the results.
+
+filterEven = (...getNumbers) => {
+    let result = getNumbers.filter(item => item % 2 == 0);
+    // console.log(result);
+}
+
+filterEven(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+
+
+// Combine and Sort Arrays:
+// ● Create a function combineAndSort that uses the rest operator to take any number of arrays.
+// ● The function should combine all the arrays into one and return the sorted result.
+// ● Call the function with different arrays and log the results.
+
+combineAndSort = (...sortNumbersOfArr) => {
+
+    let merged = [];
+    sortNumbersOfArr.forEach(arr => {
+        merged = [...merged, ...arr];
+    });
+
+    merged.sort((a, b) => a - b);
+
+
+    console.log(merged);
+}
+
+// combineAndSort( [1, 3, 2], [5, 4, 6], [7, 8, 9]);
