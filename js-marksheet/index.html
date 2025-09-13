@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <main>
+        <header>
+            <div class="d-flex w-50 gap-2 justify-content-between align-items-center mx-auto m-5">
+                <div class="input-group flex-column gap-1">
+                    <label for="username">Username</label>
+                    <input class="form-control w-100" type="text" placeholder="Sameer Saleem" name="username"
+                        id="username" />
+                </div>
+                <div class="input-group flex-column gap-1">
+                    <label for="username">Roll No</label>
+                    <input class="form-control w-100" type="text" placeholder="e.g 569" name="rollnumber"
+                        id="rollnumber" />
+                </div>
+                <div class="input-group flex-column gap-1">
+                    <label for="username">Class</label>
+                    <input class="form-control w-100" type="text" placeholder="e.g Bachelors" name="class" id="class" />
+                </div>
+                <div class="input-group flex-column gap-1">
+                    <button class="btn btn-primary" onclick="getFieldsData()">Search</button>
+                </div>
+            </div>
+        </header>
+        <section id="userDetails">
+            
+        </section>
+    </main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="index.js"></script>
+
+</html>
