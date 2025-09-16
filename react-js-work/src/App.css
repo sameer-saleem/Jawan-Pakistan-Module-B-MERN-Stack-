@@ -3,3 +3,37 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --primary: #e77924;
+  --border-default: #cccccc;
+  --box-shadow: rgba(0, 0, 0, 5%);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  padding-inline: 3rem;
+}
+
+.main-content {
+  padding: 2rem;
+  min-height: calc(100vh - 142px);
+}
+
+.cards-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
