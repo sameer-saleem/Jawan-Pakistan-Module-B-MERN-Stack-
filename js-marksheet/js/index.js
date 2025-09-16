@@ -4,9 +4,9 @@ const userData = [
         rollNumber: 211,
         Class: "BSCS",
         subjects: {
-            english: 57,
-            urdu: 25,
-            islamiat: 39,
+            english: 89,
+            urdu: 98,
+            islamiat: 88,
         }
     },
     {
@@ -14,9 +14,9 @@ const userData = [
         rollNumber: 212,
         Class: "BSSE",
         subjects: {
-            english: 59,
-            urdu: 68,
-            islamiat: 36,
+            english: 65,
+            urdu: 27,
+            islamiat: 68,
         }
     },
     {
@@ -24,9 +24,9 @@ const userData = [
         rollNumber: 213,
         Class: "BBA",
         subjects: {
-            english: 59,
-            urdu: 68,
-            islamiat: 36,
+            english: 99,
+            urdu: 79,
+            islamiat: 44,
         }
     },
     {
@@ -34,9 +34,9 @@ const userData = [
         rollNumber: 214,
         Class: "LLB",
         subjects: {
-            english: 59,
-            urdu: 68,
-            islamiat: 36,
+            english: 55,
+            urdu: 66,
+            islamiat: 88,
         }
     },
     {
@@ -44,9 +44,9 @@ const userData = [
         rollNumber: 215,
         Class: "BBA",
         subjects: {
-            english: 59,
-            urdu: 68,
-            islamiat: 36,
+            english: 45,
+            urdu: 29,
+            islamiat: 78,
         }
     },
     {
@@ -54,9 +54,9 @@ const userData = [
         rollNumber: 216,
         Class: "BCom",
         subjects: {
-            english: 59,
-            urdu: 68,
-            islamiat: 36,
+            english: 57,
+            urdu: 49,
+            islamiat: 38,
         }
     }
 ];
@@ -88,29 +88,88 @@ let stdClass;
 let finalStdResult = [];
 
 getFieldsData = () => {
+
     stdName = userNameEl.value;
     stdRollnumber = rollnumberEl.value;
     stdClass = classNameEl.value;
 
-    finalStdResult = userData.filter(item => {
-        return item.user == stdName && item.rollNumber == stdRollnumber && item.Class == stdClass
-    });
+    if (stdName != "" && stdName != null && stdRollnumber != "" && stdRollnumber != null && stdClass != "" && stdClass != null) {
 
-    finalStdResult.forEach(item => {
+        finalStdResult = userData.filter(item => {
+            return item.user.toLowerCase() == stdName.toLowerCase() && item.rollNumber == stdRollnumber && item.Class.toLowerCase() == stdClass.toLowerCase()
+        });
+    } else {
+        alert("Please fill all the fields");
+    }
 
-        let stdSubjects = item.subjects;
-        let stdSubjectInd = Object.keys(stdSubjects).map(item => `<td>${stdSubjects[item]}</td>`);
-        
-        studentDetails.innerHTML += `
+    if (finalStdResult.length > 0) {
+
+
+        finalStdResult.forEach(item => {
+
+            let stdSubjects = item.subjects;
+            let stdSubjectInd = Object.keys(stdSubjects).map(item => `<td>${stdSubjects[item]}</td>`);
+            let subjectsTotal = Object.keys(stdSubjects).map(item => stdSubjects[item]);
+
+            let totalSubjects = subjectsTotal.length;
+            let totalMarksOfStudent = 0;
+
+
+            subjectsTotal.forEach((item => {
+                totalMarksOfStudent += item;
+            }))
+
+            let totalSubjectsNumbers = totalSubjects * 100;
+
+            let percentage = totalMarksOfStudent / totalSubjectsNumbers * 100;
+
+            let studentgrade = '';
+
+            if (percentage >= 90) {
+                studentgrade = 'A+'
+            } else if (percentage > 70 || percentage > 80) {
+                studentgrade = 'A'
+            }
+            else if (percentage > 60) {
+                studentgrade = 'B'
+            }
+            else if (percentage > 50) {
+                studentgrade = 'C'
+            }
+            else if (percentage > 45) {
+                studentgrade = 'D'
+            } else {
+                studentgrade = 'F';
+            }
+
+
+
+            studentDetails.innerHTML = `
             <tr>
                 <td>${item.user}</td>
                 <td>${item.rollNumber}</td>
                 <td>${item.Class}</td>
                 ${stdSubjectInd}
-            </tr>
-        `
-    })
+                <td>${Math.round(percentage)} %</td>
+                <td>${studentgrade}</td>
+            </tr>`
 
+            userNameEl.value = "";
+            rollnumberEl.value = "";
+            classNameEl.value = "";
+
+        });
+    } else {
+        studentDetails.innerHTML = `
+        <tr>
+            <td colspan="8">
+                <div class="alert alert-danger w-100 mt-2" role="alert">
+                    No Results Found
+                </div>
+            </td>
+        </tr>
+        `
+    }
 }
 
 
