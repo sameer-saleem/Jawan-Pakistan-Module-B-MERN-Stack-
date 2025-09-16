@@ -105,15 +105,42 @@ header,
 .students,
 .marksheet {
     background-color: var(--template-bg);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(15px);
 }
 
 .students {
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    padding: 1.5rem;
     border: 1px solid var(--bs-primary);
+    overflow-x: auto;
+
+    .std-head {
+        background-color: var(--bs-primary);
+        padding: 1rem 1.5rem;
+    }
+
+
+    h2 {
+        margin-bottom: 5px;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    h2,
+    p {
+        color: var(--bs-white);
+    }
+
+    h2 {
+
+        @media (max-width:1199px) {
+            font-size: 24px;
+            line-height: 28px;
+        }
+    }
 
     >ul {
 
@@ -124,7 +151,15 @@ header,
             margin-bottom: 8px;
             border-bottom: 1px solid var(--border-default);
             padding-bottom: 8px;
+            padding-inline: 1.5rem;
 
+            @media (max-width:575px) {
+                width: max-content;
+            }
+
+            &:first-child {
+                padding-top: .5rem;
+            }
             &:last-child {
                 margin-bottom: 0;
                 border-bottom: 0;
@@ -136,6 +171,10 @@ header,
                 overflow: hidden;
                 text-overflow: ellipsis;
                 font-weight: 600;
+
+                @media (max-width:1399px) {
+                    width: 150px;
+                }
             }
         }
     }
@@ -149,9 +188,8 @@ header,
 
     .marksheet-head {
         background-color: var(--bs-primary);
-        backdrop-filter: blur(50px);
-        border-radius: 10px 10px 0 0;
         padding: 1rem 1.5rem;
+        border-radius: 10px 10px 0 0;
         color: var(--bs-white);
 
         .icon {
@@ -165,6 +203,16 @@ header,
             line-height: 40px;
             font-weight: 600;
             margin-bottom: 4px;
+
+            @media (max-width:1199px) {
+                font-size: 28px;
+                line-height: 32px;
+            }
+
+            @media (max-width:1199px) {
+                font-size: 22px;
+                line-height: 28px;
+            }
         }
 
         p {
@@ -177,14 +225,18 @@ header,
 }
 
 .marksheet-body {
+    overflow-x: auto;
+
     table {
         width: 100%;
 
         thead {
             text-align: center;
+
             tr {
                 th {
-                    font-weight: 400;
+                    font-weight: 600;
+                    color: var(--bs-primary);
                 }
             }
         }
@@ -194,6 +246,7 @@ header,
             border: 1px solid var(--border-default);
             padding: 4px 5px;
             color: var(--bs-white);
+            text-align: center;
         }
     }
 }
@@ -206,5 +259,17 @@ footer {
         color: var(--bs-white);
         font-size: 16px;
         line-height: 24px;
+    }
+}
+
+@media (min-width:768px) {
+    .w-md-75 {
+        width: 75%;
+    }
+}
+
+@media (max-width:767px) {
+    .w-sm-100 {
+        width: 100%;
     }
 }

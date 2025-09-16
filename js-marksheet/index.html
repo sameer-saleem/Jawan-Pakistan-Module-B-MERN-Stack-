@@ -14,31 +14,32 @@
 
     <main>
         <header>
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center gap-3">
-                    <div class="brand-logo">
+            <div class="container-md container-fluid">
+                <div
+                    class="d-flex justify-content-lg-between justify-content-center align-items-center flex-wrap gap-3">
+                    <div class="brand-logo text-lg-start text-center">
                         <img src="./images/my-logo.webp" alt="logo" width="90" />
                     </div>
-                    <div class="d-flex w-75">
+                    <div class="d-flex w-md-75 w-sm-100">
                         <div class="form-floating w-100">
                             <input class="form-control bordr-t-b-right-radius-0" type="text" placeholder="Sameer Saleem"
-                                id="username" />
+                                id="username" autocomplete="off"/>
                             <label for="username">Username</label>
                         </div>
                         <div class="form-floating w-100">
                             <input class="form-control rounded-0 border-start-0" type="text" placeholder="e.g 569"
-                                id="rollnumber" />
+                                id="rollnumber" autocomplete="off"/>
                             <label for="rollnumber">Roll No</label>
                         </div>
                         <div class="form-floating w-100">
                             <input class="form-control rounded-0 border-end-0" type="text" placeholder="e.g Bachelors"
-                                id="class" />
+                                id="class" autocomplete="off"/>
                             <label for="class">Class</label>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary bordr-t-b-left-radius-0 h-100 px-4"
                                 onclick="getFieldsData()">
-                                Search
+                                <span class="d-md-block d-none"> Search</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--bs-white)"
                                     class="bi bi-search" viewBox="0 0 16 16">
                                     <path
@@ -52,24 +53,27 @@
         </header>
         <div class="main-content">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 d-flex align-self-stretch">
+                <div class="row gy-lg-0 gy-4">
+                    <div class="col-xl-4 col-lg-5 d-flex align-self-stretch">
                         <div class="students">
-                            <h1>Studenst List:</h1>
+                            <div class="std-head">
+                                <h2>Studenst List:</h2>
+                                <p>You can seach below students result in the above Searchbar.</p>
+                            </div>
                             <ul id="studentsList">
 
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-8 d-flex align-self-stretch">
+                    <div class="col-xl-8 col-lg-7 d-flex align-self-stretch">
                         <div class="marksheet">
-                            <div class="marksheet-head d-flex align-items-center justify-content-between gap-3">
+                            <div class="marksheet-head d-flex align-items-center justify-content-between gap-sm-3">
                                 <div class="content-side">
                                     <h1>Sameer's Education System</h1>
                                     <p>Karachi, Pakistan
                                     </p>
                                 </div>
-                                <div class="icon">
+                                <div class="icon d-sm-block d-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90"
                                         fill="var(--bs-white)" class="bi bi-mortarboard" viewBox="0 0 16 16">
                                         <path
@@ -97,7 +101,16 @@
                                         </tr>
                                     </thead>
                                     <tbody id="studentDetails">
-                                        
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -119,14 +132,14 @@
                                 </path>
                             </svg>
                         </a>
-                        <a href="">
+                        <a href="https://www.facebook.com/profile.php?id=61579925497584" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="var(--bs-white)"
                                 class="bi bi-facebook" viewBox="0 0 16 16">
                                 <path
                                     d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
                             </svg>
                         </a>
-                        <a href="">
+                        <a href="https://www.instagram.com/sameersaleem736" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="var(--bs-white)"
                                 class="bi bi-instagram" viewBox="0 0 16 16">
                                 <path
