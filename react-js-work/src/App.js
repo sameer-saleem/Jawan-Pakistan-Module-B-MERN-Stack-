@@ -3,41 +3,49 @@ import Footer from './components/footer/Footer';
 import Main from './Main';
 import './App.css';
 import { useState, useEffect } from 'react';
+import SignIn from './components/login/Login';
+import { Route, Routes } from 'react-router-dom';
+import Signup from './components/signup/Signup';
 
 function App() {
   // const [click, setClick] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-  let stopSecondBtn;
+  // const [hours, setHours] = useState(0);
+  // const [minutes, setMinutes] = useState(0);
+  // const [seconds, setSeconds] = useState(0);
+  // let stopSecondBtn;
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const updateTime = () => {
-      let date = new Date();
-      setHours((d) => date.getHours());
-      setMinutes(date.getMinutes());
-      setSeconds(date.getSeconds());
-    }
+  //   const updateTime = () => {
+  //     let date = new Date();
+  //     setHours((d) => date.getHours());
+  //     setMinutes(date.getMinutes());
+  //     setSeconds(date.getSeconds());
+  //   }
 
-    const time = setInterval(() => {
-      updateTime();
-    }, 1000);
+  //   const time = setInterval(() => {
+  //     updateTime();
+  //   }, 1000);
 
-    const stopSecond = () => {
-      clearInterval(() => {
-        updateTime();
-      })
-    }
+  //   const stopSecond = () => {
+  //     clearInterval(() => {
+  //       updateTime();
+  //     })
+  //   }
 
-    stopSecondBtn = `<button onClick={()=>stopSecond()}>Stop Seconds</button>`
+  //   stopSecondBtn = `<button onClick={()=>stopSecond()}>Stop Seconds</button>`
 
-  });
+  // });
 
   return (
     <>
-      <h1>Time: {hours}: {minutes}: {seconds} </h1>
-      {stopSecondBtn}
+    <Header />
+    <Routes>
+      <Route path="/" element={<Signup />}/>
+      <Route path="/sign-in" element={<SignIn />}/>
+    </Routes>
+      {/* <h1>Time: {hours}: {minutes}: {seconds} </h1>
+      {stopSecondBtn} */}
 
       {/* <p>Yo've clicked {click} time!</p>
       <p>The number of times yo've clicked is {click % 2 == 0 ? "Even" : "Odd"} </p>
