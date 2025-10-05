@@ -83,7 +83,7 @@ const ProductCard = (props) => {
                     fullWidth
                     sx={{ borderRadius: 2, textTransform: "none", fontWeight: 500 }}
                 >
-                    Buy Now
+                    View
                 </Button>
             </CardActions>
         </Card>

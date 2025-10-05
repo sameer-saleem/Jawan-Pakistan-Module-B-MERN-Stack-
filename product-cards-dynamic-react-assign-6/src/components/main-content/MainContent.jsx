@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ProductCard from "../product-card/ProductCard"
 import Grid from '@mui/material/Grid';
 import Container from "@mui/material/Container";
+import ProductDetailPage from "../product-card-detail/ProductCardDetail";
 
 const MainContent = () => {
     const [productsData, setProductsData] = useState(null);
