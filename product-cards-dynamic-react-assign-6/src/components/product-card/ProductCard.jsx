@@ -11,8 +11,12 @@ const ProductCard = (props) => {
     return (
         <Card
             id={id}
+
             sx={{
-                maxWidth: 320,
+                maxWidth: {
+                    xs: "100%",   // mobile (0px and up)
+                    sm: "320px",  // large screens (1200px and up)
+                },
                 borderRadius: 4,
                 boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
                 overflow: "hidden",
@@ -35,9 +39,9 @@ const ProductCard = (props) => {
                 }}
             />
             <CardContent sx={{ flexGrow: 1, p: 2 }}>
-                <Typography 
-                    variant="h6" 
-                    sx={{ 
+                <Typography
+                    variant="h6"
+                    sx={{
                         fontWeight: 600,
                         mb: 1,
                         color: "text.primary",
@@ -48,19 +52,19 @@ const ProductCard = (props) => {
                 >
                     {title}
                 </Typography>
-                <Typography 
-                    variant="body1" 
-                    sx={{ 
-                        fontWeight: 500, 
+                <Typography
+                    variant="body1"
+                    sx={{
+                        fontWeight: 500,
                         color: "primary.main",
                         mb: 1
                     }}
                 >
                     ${price} <span style={{ color: "#777", fontSize: "0.9rem" }}>| {category}</span>
                 </Typography>
-                <Typography 
-                    variant="body2" 
-                    sx={{ 
+                <Typography
+                    variant="body2"
+                    sx={{
                         color: "text.secondary",
                         lineHeight: 1.5,
                         display: "-webkit-box",
@@ -73,9 +77,9 @@ const ProductCard = (props) => {
                 </Typography>
             </CardContent>
             <CardActions sx={{ p: 2, pt: 0 }}>
-                <Button 
-                    variant="contained" 
-                    color="primary" 
+                <Button
+                    variant="contained"
+                    color="primary"
                     fullWidth
                     sx={{ borderRadius: 2, textTransform: "none", fontWeight: 500 }}
                 >

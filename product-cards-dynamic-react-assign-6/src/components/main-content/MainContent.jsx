@@ -19,7 +19,7 @@ const MainContent = () => {
                     {productsData && productsData.map((item, i) => {
                         const { id, image, title, price, category, description } = item;
                         return (
-                            <Grid size={{ xs: 6, md: 3 }} key={i}>
+                            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={i}>
                                 <ProductCard id={id} image={image} title={title} price={price} category={category} description={description} />
                             </Grid>
                         )
