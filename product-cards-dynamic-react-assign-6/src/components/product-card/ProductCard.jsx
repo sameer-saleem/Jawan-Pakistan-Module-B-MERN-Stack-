@@ -4,9 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 const ProductCard = (props) => {
-    const { id, image, title, price, category, description } = props;
+    const { id, image, title, price, category, description, onClick, productLink } = props;
 
     return (
         <Card
@@ -77,14 +78,16 @@ const ProductCard = (props) => {
                 </Typography>
             </CardContent>
             <CardActions sx={{ p: 2, pt: 0 }}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    sx={{ borderRadius: 2, textTransform: "none", fontWeight: 500 }}
-                >
-                    View
-                </Button>
+               <Link to={productLink}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        sx={{ borderRadius: 2, textTransform: "none", fontWeight: 500 }}
+                    >
+                        View
+                    </Button>
+               </Link>
             </CardActions>
         </Card>
     );
