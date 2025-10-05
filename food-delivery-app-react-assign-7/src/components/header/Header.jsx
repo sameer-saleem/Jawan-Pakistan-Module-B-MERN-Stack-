@@ -7,7 +7,7 @@ function Header() {
     <AppBar position='sticky' sx={{ backgroundColor: '#F8F3E9' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box>
-          <FastfoodIcon sx={{ mr: 1 }} />
+          <FastfoodIcon sx={{ mr: 1 , color: '#5C3C2B'}} />
           <Typography
             variant="h6"
             component={Link}
