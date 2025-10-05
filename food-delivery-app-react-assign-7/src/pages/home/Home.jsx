@@ -34,7 +34,7 @@ function HomePage() {
         <Typography variant="h5" sx={{ mb: 3, zIndex: '1', color: '#5C3C2B' }} >
           Freshly prepared meals, delivered to your doorstep.
         </Typography>
-        <Button variant="contained" sx={{backgroundColor: 'rgba(92, 60, 43, 75%)'}} size="large" sx={{backgroundColor: 'rgba(92, 60, 43, 75%)'}}>
+        <Button variant="contained" sx={{backgroundColor: 'rgba(92, 60, 43, 75%)'}} size="large">
           Order Now
         </Button>
       </BannerBox>
