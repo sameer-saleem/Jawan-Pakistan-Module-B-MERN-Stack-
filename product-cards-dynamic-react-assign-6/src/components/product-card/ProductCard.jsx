@@ -14,8 +14,8 @@ const ProductCard = (props) => {
 
             sx={{
                 maxWidth: {
-                    xs: "100%",   // mobile (0px and up)
-                    sm: "320px",  // large screens (1200px and up)
+                    xs: "100%",
+                    sm: "320px",
                 },
                 borderRadius: 4,
                 boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
