@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Box, Grid } from '@mui/material'
+import CategoryList from './components/category-list/CategoryList'
+import Header from './components/header/Header'
+import Sidebar from './components/sidebar/Sidebar'
+import Banner from './components/banner/MainBanner'
+import PopularCards from './components/popular-cards/PopularCards'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Box sx={{ display: "flex" }}>
+      <Sidebar />
+      <div style={{ flex: 1 }}>
+        <Header />
+        <Grid container spacing={3} sx={{padding: '1.5rem'}}>
+          <Grid size={{ xs: 6, md: 3 }}>
+            <CategoryList />
+          </Grid>
+          <Grid size={{ xs: 6, md: 6 }}>
+            <Grid container spacing={2}>
+              <Grid size={12}>
+                <Banner />
+              </Grid>
+              <Grid size={12}>
+                <PopularCards />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </Box>
   )
 }
 
