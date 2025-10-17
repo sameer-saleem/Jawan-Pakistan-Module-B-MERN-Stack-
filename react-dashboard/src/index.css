@@ -22,9 +22,12 @@ a {
   gap: 5px;
 }
 
-button:has(.active) {
+a.active {
   background-color: var(--white);
+   color: var(--primary);
+   border-radius: 5px;
 }
-button:has(.active) a{
-  color: var(--primary);
+
+a.active button{
+   color: var(--primary);
 }
