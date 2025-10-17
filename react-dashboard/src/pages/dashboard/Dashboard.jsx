@@ -20,9 +20,9 @@ const Dashboard = () => {
     return (
         <>
             <Container sx={{ padding: '2rem' }}>
-                <NavLink to="/products"><Button variant="outlined" sx={{ borderColor: 'var(--white)', color: 'var(--white)' }}><Inventory2OutlinedIcon />Products</Button></NavLink>
-                <NavLink to="/users"><Button variant="outlined" sx={{ borderColor: 'var(--white)', color: 'var(--white)' }}> <GroupOutlinedIcon /> Users</Button></NavLink>
-                <NavLink to="/github"><Button variant="outlined" sx={{ borderColor: 'var(--white)', color: 'var(--white)' }}><PersonSearchOutlinedIcon /> GitHub Finder</Button></NavLink>
+                <NavLink to="/products"><Button variant="outlined" sx={{ borderColor: 'var(--white)', color: 'var(--white)' }}><Inventory2OutlinedIcon sx={{mr: .5}}/> Products</Button></NavLink>
+                <NavLink to="/users"><Button variant="outlined" sx={{ borderColor: 'var(--white)', color: 'var(--white)' }}><GroupOutlinedIcon sx={{mr: .5}}/>  Users</Button></NavLink>
+                <NavLink to="/github"><Button variant="outlined" sx={{ borderColor: 'var(--white)', color: 'var(--white)' }}><PersonSearchOutlinedIcon sx={{mr: .5}}/> GitHub Finder</Button></NavLink>
             </Container>
             <Box sx={{ p: 3 }}>
                 <Routes>
