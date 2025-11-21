@@ -20,7 +20,7 @@ import { db } from '../firebase/firebase';
 const Students = () => {
 
     const [open, setOpen] = useState(false);
-    const [rows, setRows] = useState([]);
+    const [rows, setRows] = useState([]); 
 
     const handleClickOpen = () => {
         setOpen(true);
