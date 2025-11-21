@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -11,74 +10,90 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 
 const Card = styled(MuiCard)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignSelf: 'center',
-    width: '100%',
-    padding: theme.spacing(4),
-    gap: theme.spacing(2),
-    margin: 'auto',
-    [theme.breakpoints.up('sm')]: {
-        maxWidth: '450px',
-    },
+  display: 'flex',
+  flexDirection: 'column',
+  alignSelf: 'center',
+  width: '100%',
+  padding: theme.spacing(4),
+  gap: theme.spacing(2),
+  margin: 'auto',
+  [theme.breakpoints.up('sm')]: {
+    maxWidth: '450px',
+  },
+  boxShadow:
+    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
+  ...theme.applyStyles('dark', {
     boxShadow:
-        'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
-    ...theme.applyStyles('dark', {
-        boxShadow:
-            'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
-    }),
+      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
+  }),
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
-    height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
-    minHeight: '100%',
-    padding: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-        padding: theme.spacing(4),
-    },
-    '&::before': {
-        content: '""',
-        display: 'block',
-        position: 'absolute',
-        zIndex: -1,
-        inset: 0,
-        backgroundImage:
-            'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
-        backgroundRepeat: 'no-repeat',
-        ...theme.applyStyles('dark', {
-            backgroundImage:
-                'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-        }),
-    },
+  height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
+  minHeight: '100%',
+  padding: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(4),
+  },
+  '&::before': {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    zIndex: -1,
+    inset: 0,
+    backgroundImage:
+      'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+    backgroundRepeat: 'no-repeat',
+    ...theme.applyStyles('dark', {
+      backgroundImage:
+        'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+    }),
+  },
 }));
 
-export default function SignIn(props) {
-    const [name, setName] = useState();
-    const [email, setEmail] =  useState('');
-    const [passowrd, setPassword] =  useState('');
-    const [userData, setuserData] =  useState([]);
+export default function SignIn() {
 
-    const handleSubmit = (event) => {
-        setuserData((prev) => [...prev,
-        {
-        fullname: name,
-        email: email,
-        passowrd: passowrd
-        }]) 
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
-        console.log(userData, 'user data');
-    };
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        localStorage.setItem('userData', JSON.stringify(userData));
-    }, [userData]);
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    try {
 
-    return (
-        <>      <CssBaseline enableColorScheme />
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+
+       setFormData({
+        email: '',
+        password: ''
+      });
+      navigate("/students");
+
+    } catch (error) {
+      alert("Error signing in:", error.message);
+    }
+
+  };
+
+  const handleChange = (e) => {
+
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  };
+
+
+  return (
+    <>      
+    <CssBaseline enableColorScheme />
       <SignInContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
           <Typography
@@ -90,7 +105,7 @@ export default function SignIn(props) {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSignIn}
             noValidate
             sx={{
               display: 'flex',
@@ -111,8 +126,8 @@ export default function SignIn(props) {
                 required
                 fullWidth
                 variant="outlined"
-                value={name}
-                onChange={(e)=> setEmail(e.target.value)}
+                value={formData.email}
+                onChange={handleChange}
               />
             </FormControl>
             <FormControl>
@@ -127,8 +142,8 @@ export default function SignIn(props) {
                 required
                 fullWidth
                 variant="outlined"
-                value={passowrd}
-                onChange={(e)=> setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleChange}
               />
             </FormControl>
             <FormControlLabel
@@ -136,7 +151,7 @@ export default function SignIn(props) {
               label="Remember me"
             />
             <Button
-            onClick={()=> handleSubmit()}
+              type='submit'
               fullWidth
               variant="contained"
             >
@@ -154,7 +169,7 @@ export default function SignIn(props) {
           </Box>
         </Card>
       </SignInContainer>
-      </>
+    </>
 
-    );
+  );
 }
