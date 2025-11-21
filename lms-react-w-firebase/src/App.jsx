@@ -5,7 +5,7 @@ import SignIn from './components/login/Login';
 import { Route, Routes } from 'react-router-dom';
 import Signup from './components/signup/Signup';
 import { useLocation } from 'react-router-dom';
-import Dashboard from './components/dashboard/dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import Sidebar from './components/sidebar/Sidebar';
 import Students from './components/students/Students';
 
