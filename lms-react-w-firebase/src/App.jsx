@@ -4,12 +4,16 @@ import './App.css';
 import SignIn from './components/login/Login';
 import { Route, Routes } from 'react-router-dom';
 import Signup from './components/signup/Signup';
+import { useLocation } from 'react-router-dom';
 
 function App() {
 
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <>
-      <Header />
+      { currentPath !== "/" && currentPath !== "/sign-in" && <Header /> }
 
       <Routes>
         <Route path="/" element={<Signup />} />
@@ -17,7 +21,7 @@ function App() {
 
       </Routes>
 
-      <Footer />
+      { currentPath !== "/" && currentPath !== "/sign-in" && <Footer /> }
     </>
   );
 }
