@@ -11,24 +11,24 @@
 //     return 'hellow2 function';
 // }
 
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 
-function readHtmlFile(callback) {
+// function readHtmlFile(callback) {
 
-    const htmlFilePath = path.join(__dirname, 'index.html');
+//     const htmlFilePath = path.join(__dirname, 'index.html');
     
-    fs.readFile(htmlFilePath, (err, data) => {
-        if (err) {
-            return callback('Error reading HTML file:', err);
-        } else {
-            return callback(null, data);
-        }
-    });
+//     fs.readFile(htmlFilePath, (err, data) => {
+//         if (err) {
+//             return callback('Error reading HTML file:', err);
+//         } else {
+//             return callback(null, data);
+//         }
+//     });
 
-}
+// }
 
-module.exports = { readHtmlFile };
+// module.exports = { readHtmlFile };
 
 
 // let x = 10;
