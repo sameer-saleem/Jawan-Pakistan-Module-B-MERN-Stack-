@@ -1,0 +1,168 @@
+Endpoint:daraz.pk/api/register
+Method: POST
+Request Body
+2part
+//json
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "testpassword"
+}
+3part
+//Response
+Success: 201 Created
+Error: 400 Bad Request if the email already exists. 
+Causes: 
+1)Malformed request syntax
+2)Invalid request message framing
+3)Deceptive request routing
+4)Request size is too large
+5)Unsupported request method
+6)Authentication issues
+4part
+User Login
+what is api in web development
+An API (Application Programming Interface) is a set of rules that allows software applications to communicate with each other. 
+How APIs work
+Requests and responses: 
+APIs define how applications communicate with each other using requests and responses. 
+API documentation: API documentation provides information on how to structure requests and responses. 
+API endpoints: API endpoints are URLs used to send requests to an API. 
+API keys: API keys are used to authenticate requests to an API
+How APIs are used
+Data sharing: APIs allow developers to share data and functionality between applications, organizations, and third parties. 
+Integration: APIs allow developers to integrate data, services, and capabilities from other applications. 
+Innovation: APIs help drive innovation and simplify procedures in web development
+Steps:
+Navigate to the login page.
+Enter your credentials.
+Click the "Login" button.
+If credentials are correct, access is granted.
+Signup Process
+
+Definition: The signup process is for creating a new account on a platform.
+Requirements:
+Personal information (e.g., name, email)
+Password
+Steps:
+Go to the signup page.
+Fill out the registration form with required details.
+Agree to terms and conditions (if applicable).
+Click the "Sign Up" button.
+Verify your email (if required) to complete the registration.
+Common Features in Login/Signup Systems
+
+Password Recovery: Options to reset forgotten passwords.
+Social Login: Ability to log in using social media accounts (e.g., Google, Facebook).
+Two-Factor Authentication: Additional security layer for logging in.
+Customizable Fields: Options to add or modify fields during signup.
+Plugins for Enhanced Login/Signup Experience
+
+Easy Login for WooCommerce:
+Provides customizable login and signup forms.
+Supports social login and additional security features like reCAPTCHA.
+Allows for custom registration fields and email verification.
+part 6
+mkdir user-auth-api
+cd user-auth-api
+npm init -y
+
+npm install express bcryptjs jsonwebtoken mongoose
+Create app.js
+const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const app = express();
+const PORT = 3000;
+
+mongoose.connect('mongodb://localhost:27017/mydatabase')
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(error => console.error('Error connecting to MongoDB:', error));
+
+app.use(express.json());
+part 7
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+models/User.js
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+});
+
+module.exports = mongoose.model('User ', userSchema);
+server.js
+const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('./models/User');
+require('dotenv').config();
+
+const app = express();
+app.use(express.json());
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error(err));
+
+// Signup route
+app.post('/signup', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        // Check if user already exists
+        const existingUser  = await User.findOne({ username });
+        if (existingUser ) {
+            return res.status(400).json({ message: 'User  already exists' });
+        }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create a new user
+        const user = new User({ username, password: hashedPassword });
+        await user.save();
+
+        res.status(201).json({ message: 'User  created successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Login route
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        // Find the user
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        // Check password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        // Create and assign a token
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
+
