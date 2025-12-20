@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Mouse",
+    "description": "A sleek wireless mouse with ergonomic design.",
+    "price": 25.99
+  },
+  {
+    "id": 2,
+    "name": "Gaming Keyboard",
+    "description": "RGB backlit mechanical keyboard with programmable keys.",
+    "price": 59.99
+  },
+  {
+    "id": 3,
+    "name": "Bluetooth Headphones",
+    "description": "Noise-canceling Bluetooth headphones with 30-hour battery life.",
+    "price": 89.99
+  },
+  {
+    "id": 4,
+    "name": "Smartphone Stand",
+    "description": "Adjustable smartphone stand with a 360-degree rotation.",
+    "price": 15.49
+  },
+  {
+    "id": 5,
+    "name": "Laptop Cooling Pad",
+    "description": "Cooling pad for laptops up to 15.6 inches, with quiet fans.",
+    "price": 19.99
+  }
+]
