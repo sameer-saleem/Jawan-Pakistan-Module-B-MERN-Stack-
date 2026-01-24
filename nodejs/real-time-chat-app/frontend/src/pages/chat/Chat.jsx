@@ -7,7 +7,7 @@ import axios from 'axios';
 const Chat = ({ chatWith }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const currentUser = useSelector((state) => state.auth.user?.email);
+  const currentUser = useSelector(state => state.auth.user?.email);
   const messagesEndRef = useRef(null);
 
   if (!currentUser || !chatWith) {
@@ -20,8 +20,10 @@ const Chat = ({ chatWith }) => {
 
   // Join socket room
   useEffect(() => {
-    socket.emit('join', currentUser);
-  }, [currentUser]);
+  if (currentUser) {
+    socket.emit('join', currentUser); // join socket room with the current user
+  }
+}, [currentUser]);
 
   // Load chat history
   useEffect(() => {
@@ -30,9 +32,10 @@ const Chat = ({ chatWith }) => {
       .catch(err => console.log(err));
   }, [currentUser, chatWith]);
 
-  // Listen for incoming messages
+  // Listen for messages
   useEffect(() => {
     const handleReceive = (msg) => {
+      // Only add message if between currentUser and chatWith
       if (
         (msg.sender === currentUser && msg.receiver === chatWith) ||
         (msg.sender === chatWith && msg.receiver === currentUser)
@@ -40,7 +43,6 @@ const Chat = ({ chatWith }) => {
         setMessages(prev => [...prev, msg]);
       }
     };
-
     socket.on('receiveMessage', handleReceive);
     return () => socket.off('receiveMessage', handleReceive);
   }, [currentUser, chatWith]);
@@ -49,11 +51,11 @@ const Chat = ({ chatWith }) => {
     if (!message.trim()) return;
 
     const msgObj = { sender: currentUser, receiver: chatWith, text: message };
-    setMessages(prev => [...prev, msgObj]); // add locally
-    socket.emit('sendMessage', msgObj);      // send to receiver
+    socket.emit('sendMessage', msgObj); // send to backend
     setMessage('');
   };
 
+  // Auto-scroll
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -77,8 +79,8 @@ const Chat = ({ chatWith }) => {
           variant="outlined"
           placeholder="Type a message..."
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+          onChange={e => setMessage(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && handleSend()}
         />
         <Button variant="contained" onClick={handleSend}>Send</Button>
       </Box>

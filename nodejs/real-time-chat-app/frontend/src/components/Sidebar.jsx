@@ -9,65 +9,72 @@ import axios from 'axios';
 const drawerWidth = 260;
 
 const Sidebar = ({ setChatWith, chatWith }) => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
 
-    const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        dispatch(logout());
-        navigate('/');
-    };
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    dispatch(logout());
+    navigate('/');
+  };
 
-    // Fetch users from backend
-    useEffect(() => {
-        axios.get('http://localhost:5000/api/users')
-            .then(res => {
-                // Exclude logged-in user
-                setUsers(res.data.filter(u => u.email !== user.email));
-            })
-            .catch(err => console.log(err));
-    }, [user]);
+  // Fetch all other users
+  useEffect(() => {
+  if (!user?.email) return; // wait for user to be loaded
 
-    return (
-        <Box sx={{ width: drawerWidth, borderRight: '1px solid #e0e0e0', bgcolor: 'white', p: 2 }}>
-            <Box sx={{ textAlign: 'center', mb: 2 }}>
-                <Avatar sx={{ width: 60, height: 60, bgcolor: 'primary.main', margin: '0 auto', mb: 1.5 }}>
-                    {user?.email?.[0]?.toUpperCase() || 'U'}
-                </Avatar>
-                <Typography variant="subtitle1">{user?.email?.split('@')[0]}</Typography>
-                <Typography variant="caption" color="text.secondary">{user?.email}</Typography>
-            </Box>
+  axios.get('http://localhost:5000/api/users')
+    .then(res => {
+      const filtered = res.data.filter(u => u.email !== user.email);
+      setUsers(filtered);
+    })
+    .catch(err => console.log(err));
+}, [user]);
 
-            <Typography variant="subtitle2" sx={{ mt: 2, mb: 1 }}>Users</Typography>
-            <List>
-                {users.map(u => (
-                    <ListItem key={u.email} disablePadding>
-                        <ListItemButton
-                            selected={chatWith === u.email}
-                            onClick={() => setChatWith(u.email)}
-                        >
-                            <ListItemIcon><ChatBubbleOutline /></ListItemIcon>
-                            <ListItemText primary={u.email.split('@')[0]} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
 
-            <Box sx={{ flexGrow: 1 }} />
+  return (
+    <Box sx={{ width: drawerWidth, borderRight: '1px solid #e0e0e0', bgcolor: 'white', p: 2, display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      
+      {/* Current User Info */}
+      <Box sx={{ textAlign: 'center', mb: 3 }}>
+        <Avatar sx={{ width: 60, height: 60, bgcolor: 'primary.main', margin: '0 auto', mb: 1.5 }}>
+          {user?.email?.[0]?.toUpperCase() || 'U'}
+        </Avatar>
+        <Typography variant="subtitle1">{user?.email?.split('@')[0]}</Typography>
+        <Typography variant="caption" color="text.secondary">{user?.email}</Typography>
+      </Box>
 
-            <List>
-                <ListItem disablePadding>
-                    <ListItemButton onClick={handleLogout}>
-                        <ListItemIcon><ExitToApp color="error" /></ListItemIcon>
-                        <ListItemText primary="Logout" />
-                    </ListItemButton>
-                </ListItem>
-            </List>
-        </Box>
-    );
+      {/* Other Users List */}
+      <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+        <Typography variant="subtitle2" sx={{ mb: 1 }}>Users</Typography>
+        <List>
+          {users.map(u => (
+            <ListItem key={u.email} disablePadding>
+              <ListItemButton
+                selected={chatWith === u.email}
+                onClick={() => setChatWith(u.email)}
+              >
+                <ListItemIcon><ChatBubbleOutline /></ListItemIcon>
+                <ListItemText primary={u.email.split('@')[0]} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+
+      {/* Logout */}
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleLogout}>
+            <ListItemIcon><ExitToApp color="error" /></ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
+  );
 };
 
 export default Sidebar;

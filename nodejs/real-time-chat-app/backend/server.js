@@ -5,11 +5,13 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 
+const Message = require('./models/Message');
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Create HTTP server for socket.io
+// HTTP server for socket.io
 const server = http.createServer(app);
 
 // Routes
@@ -25,41 +27,45 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/register', registerRoute);
 app.use('/api/login', loginRoute);
 app.use('/api/users', usersRoute);
-app.use('/api/messages', messagesRoute); // keep all messages APIs under /api/messages
+app.use('/api/messages', messagesRoute); // all message APIs under /api/messages
 
 // =====================
-// Socket.io setup
+// Socket.io
 // =====================
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // frontend URL
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"]
   }
 });
 
-// Track connected users (email -> socket.id)
+// Track online users
 const onlineUsers = new Map();
 
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
 
-  // Join room
   socket.on('join', (email) => {
     onlineUsers.set(email, socket.id);
-    console.log(`User ${email} joined with socket id ${socket.id}`);
+    console.log(`User ${email} joined`);
   });
 
-  // Send message to specific receiver
-  socket.on('sendMessage', ({ sender, receiver, text }) => {
-    const receiverSocket = onlineUsers.get(receiver);
-    const message = { sender, receiver, text, createdAt: new Date() };
+  socket.on('sendMessage', async ({ sender, receiver, text }) => {
+    try {
+      // Save message to DB
+      const message = await Message.create({ sender, receiver, text });
 
-    // Only send to receiver
-    if (receiverSocket) {
-      io.to(receiverSocket).emit('receiveMessage', message);
+      // Emit to receiver if online
+      const receiverSocket = onlineUsers.get(receiver);
+      if (receiverSocket) io.to(receiverSocket).emit('receiveMessage', message);
+
+      // Emit to sender to update UI
+      const senderSocket = onlineUsers.get(sender);
+      if (senderSocket) io.to(senderSocket).emit('receiveMessage', message);
+
+    } catch (err) {
+      console.log("Error saving message:", err);
     }
-
-    // Sender adds message locally in client, no need to emit back
   });
 
   socket.on('disconnect', () => {
@@ -73,9 +79,4 @@ io.on('connection', (socket) => {
   });
 });
 
-// =====================
-// Start server
-// =====================
-server.listen(5000, () => {
-  console.log('Server running on port 5000');
-});
+server.listen(5000, () => console.log('Server running on port 5000'));
