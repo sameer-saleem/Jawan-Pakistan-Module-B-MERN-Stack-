@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #002020;
+  --white: #ffffff;
+  --border-default: #3d47514d;
+}
+
+body {
+  background-color: var(--primary);
+}
+
+a {
+  text-decoration: none;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+a.active {
+  background-color: var(--white);
+   color: var(--primary);
+   border-radius: 5px;
+}
+
+a.active button{
+   color: var(--primary);
+}

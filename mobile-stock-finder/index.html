@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERN Stack Class 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<main>
+    <h1>Mobiles Stock Finder</h1>
+    <section class="inputs-row">
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" placeholder="Phone Name" id="phoneName"/>
+        </div>
+        <div class="form-group">
+            <label for="phonePrice">Phone Price</label>
+            <input type="text" placeholder="Single Phone Price" id="singlePhone" disabled/>
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="text" placeholder="Stock" id="stock" disabled/>
+        </div>
+        <div class="form-group">
+            <label for="totalAmount">Total Amount</label>
+            <input type="text" placeholder="Total Amount" id="totalAmount" disabled/>
+        </div>
+        <div class="form-group">
+            <button onclick="search()">Search</button>
+        </div>
+        <br>
+    </section>
+    <h2 id="showError"></h2>
+</main>
+<body> 
+<script src="index.js"></script>
+</html>
